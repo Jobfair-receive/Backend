@@ -1,19 +1,7 @@
-<<<<<<< HEAD
 const express = require("express");
 const router = express.Router();
 
 router.post("/", async (req, res) => {
-=======
-const express = require('express');
-const app = express();
-const router = express.Router();
-
-const cors = require("cors");
-app.use(cors());
-
-
-app.post("/", async (req, res) => {
->>>>>>> 2cf6cdc6bdd9b54ad9a6972e8deb1a300f31e242
     try {
 
         const surveyData = req.body;
@@ -85,8 +73,4 @@ app.post("/", async (req, res) => {
     }
 })
 
-<<<<<<< HEAD
 module.exports = router;
-=======
-module.exports = app;
->>>>>>> 2cf6cdc6bdd9b54ad9a6972e8deb1a300f31e242
