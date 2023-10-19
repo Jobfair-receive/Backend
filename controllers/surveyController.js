@@ -1,13 +1,9 @@
-const express = require('express');
-const app = express();
+const express = require("express");
 const router = express.Router();
 
-const cors = require("cors");
-app.use(cors());
-
-
-app.post("/", async (req, res) => {
+router.post("/", async (req, res) => {
     try {
+
         const surveyData = req.body;
 
         console.log(surveyData);
@@ -31,51 +27,50 @@ app.post("/", async (req, res) => {
             P: 0, E: 0
         };
 
-        {surveyData.map((Item, index) => {
-            // mbti
-            if (index < 7) {
-                // 매우 동의 ~ 동의일 때
-                if (Item.value < 3) {
-                    BC[Item.ifYes] += (Item.value % 2) + 1;
-                } else if (Item.value == 3) { // 중립일 때
-                    continued;
-                } else { // 비동의 ~ 매우 비동의일 때
-                    BC[Item.ifNo] += (Item.value % 2) + 1;
+         Object.values(surveyData).forEach((Item,index) => {
+
+           // mbti
+           if (index <7){
+               if(Item.value<3){
+                   BC[Item.IfYes] += (Item.value %2) +1;
+               }else if(Item.value ==3){ 
+                   return;
+               }else{
+                   BC[Item.IfNo] +=(Item.value %2)+1;
+               }
+           }
+
+           //msti 
+           else if(index>=7){
+               if(Item.value<3){
+                   SC[Item.IfYes] +=(Item.value%2)+1;
+               }else if(Item.value==3){
+                  return;
+                }else{
+                    SC[Item.IfNo] +=(Item.value%2)+1;
                 }
-            }
+             }
+         });
 
-            // msti
-            else if (index >= 7) {
-                if (Item.value < 3) {
-                    SC[Item.ifYes] += (Item.value % 2) + 1;
-                } else if (Item.value == 3) {
-                    continued;
-                } else {
-                    SC[Item.ifNo] += (Item.value % 2) + 1;
-                }
-            }
-        })}
+         mbtiRes+=BC['E'] >=BC['I']? 'E':'I';
+         mbtiRes+=BC['S'] >=BC['N']? 'S':'N';
+         mbtiRes+=BC['T'] >=BC['F']? 'T':'F';
+         mbtiRes+=BC['J'] >=BC['P']? 'J':'P';
 
-        mbtiRes += BC['E'] >= BC['I'] ? 'E' : 'I';
-        mbtiRes += BC['S'] >= BC['N'] ? 'S' : 'N';
-        mbtiRes += BC['T'] >= BC['F'] ? 'T' : 'F';
-        mbtiRes += BC['J'] >= BC['P'] ? 'J' : 'P';
+         mstiRes+=SC['S'] >=SC['O']? 'S':'O';
+         mstiRes+=SC['T'] >=SC['A']? 'T':'A';
+         mstiRes+=SC['D' ]>=SC ['C '] ?'D':'C';
+        mstiRes+=SC['P']>=SC['E']?'P':'E';
 
-        mstiRes += SC['S'] >= SC['O'] ? 'S' : 'O';
-        mstiRes += SC['T'] >= SC['A'] ? 'T' : 'A';
-        mstiRes += SC['D'] >= SC['C'] ? 'D' : 'C';
-        mstiRes += SC['P'] >= SC['E'] ? 'P' : 'E';
-
-        const result = {
-            mbti: mbtiRes,
-            msti: mstiRes
-        };
+         const result ={
+             mbti:mbtiRes,
+             msti:mstiRes
+         };
 
         res.status(200).json(result);
     } catch (error) {
         console.log(error);
-        return error;
     }
 })
 
-module.exports = app;
+module.exports = router;

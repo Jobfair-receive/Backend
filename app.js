@@ -1,23 +1,25 @@
 const express = require('express')
 const app = express()
 const path = require('path')
+var cors = require('cors');
 
-const cors = require("cors");
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3001',
+    credentials: true,
+}));  
 
-const port = 8080;
+app.options('*', cors())
+const port = 3000;
 
 const svc = require('./controllers/surveyController');
 
 app.listen(port, function() {
-    console.log('listening on 8080')
+    console.log('listening on', port)
 })
 
-// app.use(express.json());
-// var cors = require('cors');
-// app.use(cors());
+app.use(express.json());
 
-// app.use(express.static(path.join(__dirname, '../Front/build')))
+app.use(express.static(path.join(__dirname, '../Front/build')))
 
 // 리액트, nodejs 서버 연결하는 부분
 app.get('/', function(req, res) {
