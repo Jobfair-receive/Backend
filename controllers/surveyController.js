@@ -1,10 +1,16 @@
-const express = require("express");
+const express = require('express');
 const app = express();
 const router = express.Router();
 
-app.post("/test", async (req, res) => {
+const cors = require("cors");
+app.use(cors());
+
+
+app.post("/", async (req, res) => {
     try {
         const surveyData = req.body;
+
+        console.log(surveyData);
 
         let mbtiRes = '';
         let mstiRes = '';
@@ -72,4 +78,4 @@ app.post("/test", async (req, res) => {
     }
 })
 
-module.exports = router;
+module.exports = app;
