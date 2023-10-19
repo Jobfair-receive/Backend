@@ -2,12 +2,15 @@ const express = require('express')
 const app = express()
 const path = require('path')
 
-const port = 3000;
+const cors = require("cors");
+app.use(cors());
+
+const port = 8080;
 
 const svc = require('./controllers/surveyController');
 
 app.listen(port, function() {
-    console.log('listening on 3000')
+    console.log('listening on 8080')
 })
 
 // app.use(express.json());
