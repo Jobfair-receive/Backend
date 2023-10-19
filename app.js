@@ -2,17 +2,19 @@ const express = require('express')
 const app = express()
 const path = require('path')
 
-const port = 3000
+const port = 3000;
+
+const svc = require('./controllers/surveyController');
 
 app.listen(port, function() {
     console.log('listening on 3000')
 })
 
-app.use(express.json());
-var cors = require('cors');
-app.use(cors());
+// app.use(express.json());
+// var cors = require('cors');
+// app.use(cors());
 
-app.use(express.static(path.join(__dirname, '../Front/build')))
+// app.use(express.static(path.join(__dirname, '../Front/build')))
 
 // 리액트, nodejs 서버 연결하는 부분
 app.get('/', function(req, res) {
@@ -25,3 +27,5 @@ app.get('/', function(req, res) {
 app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, '../Front/build/index.html'))
 })
+
+app.use('/test', svc);
