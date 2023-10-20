@@ -6,6 +6,7 @@ const router = asyncify(express.Router());
 
 router.post("/", async (req, res) => {
     const result = await callLaas(req.body);
+    // console.log(result)
     res.status(200).json({ result });
 });
 

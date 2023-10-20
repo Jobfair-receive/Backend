@@ -3,6 +3,7 @@ require("dotenv").config();
 
 const callLaas = (dto) => {
     let params = {};
+    // console.log(dto)
 
     const headers = {
         headers: {

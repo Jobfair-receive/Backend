@@ -3,10 +3,9 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
     try {
-
         const surveyData = req.body;
 
-        console.log(surveyData);
+        // console.log(surveyData);
 
         let mbtiRes = '';
         let mstiRes = '';
