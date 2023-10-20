@@ -13,7 +13,9 @@ const result1 = (dto) => {
 
     const body = {
         hash: process.env.LAAS_PRESET_TEST_HASH_SAMPLE_1,
-        "params": dto 
+        "params": {
+            ...dto
+          }
     }
 
     return axios.post("https://api-laas.wanted.co.kr/api/preset/chat/completions", body, headers)
