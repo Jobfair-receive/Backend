@@ -9,10 +9,11 @@ const { result3 } = require("../service/result3");
 
 router.post("/", async (req, res) => {
     try {
+        console.log(req.body)
         const answer1 = await result1(req.body);
         const answer2 = await result2(req.body);
         const answer3 = await result3(req.body);
-        
+                
         res.json({
             answer1: answer1,
             answer2: answer2,
