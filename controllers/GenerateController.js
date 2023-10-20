@@ -1,6 +1,8 @@
 const express = require("express");
-const router = express.Router();
 const { callLaas } = require("../service/laas");
+const asyncify = require("express-asyncify").default;
+const router = asyncify(express.Router());
+
 
 router.post("/", async (req, res) => {
     const result = await callLaas(req.body);
