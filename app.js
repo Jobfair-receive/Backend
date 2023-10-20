@@ -1,7 +1,8 @@
 const express = require('express')
-const app = express()
 const path = require('path')
 var cors = require('cors');
+const asyncify = require("express-asyncify").default;
+const app = asyncify(express())
 
 app.use(cors({
     origin: 'http://localhost:3001',
@@ -12,6 +13,7 @@ app.options('*', cors())
 const port = 3000;
 
 const svc = require('./controllers/surveyController');
+const ch = require('./controllers/GenerateController');
 
 app.listen(port, function() {
     console.log('listening on', port)
@@ -34,3 +36,4 @@ app.get('*', function(req, res) {
 })
 
 app.use('/test', svc);
+app.use("/chat", ch);
