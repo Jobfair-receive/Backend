@@ -1,11 +1,12 @@
+const http = require('http');
 const express = require('express')
 const path = require('path')
-var cors = require('cors');
+const cors = require('cors');
 const asyncify = require("express-asyncify").default;
 const app = asyncify(express())
 
 app.use(cors({
-    origin: 'http://localhost:3001',
+    origin: 'https://web-acon-frontend-euegqv2blnyn4a7i.sel5.cloudtype.app',
     credentials: true,
 }));  
 
