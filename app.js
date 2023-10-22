@@ -6,7 +6,7 @@ const asyncify = require("express-asyncify").default;
 const app = asyncify(express())
 
 app.use(cors({
-    origin: 'https://localhost:3001',
+    origin: 'https://web-acon-frontend-euegqv2blnyn4a7i.sel5.cloudtype.app/',
     credentials: true,
 }));  
 
