@@ -12,7 +12,7 @@ const result3 = (dto) => {
     }
 
     const body = {
-        hash: process.env.LAAS_PRESET_TEST_HASH_SAMPLE_1,
+        hash: process.env.LAAS_PRESET_TEST_HASH_SAMPLE_3,
         "params": {
             ...dto
           }        
