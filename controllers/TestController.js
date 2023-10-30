@@ -1,3 +1,5 @@
+const express = require("express");
+const router = express.Router();
 require("dotenv").config();
 const { result1 } = require("../service/result1");
 const { result2 } = require("../service/result2");
@@ -5,7 +7,7 @@ const { result3 } = require("../service/result3");
 
 router.post("/", async (req, res) => {
     try {
-        console.log(req.body)
+        console.log("post", req.body)
         const answer1 = await result1(req.body);
         const answer2 = await result2(req.body);
         const answer3 = await result3(req.body);

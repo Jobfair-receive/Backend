@@ -3,7 +3,7 @@ require("dotenv").config();
 
 const result2 = (dto) => {
 
-    console.log(dto)
+    console.log("result2", dto)
 
     const headers = {
         headers: {
