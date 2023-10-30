@@ -17,13 +17,6 @@ const svc = require('./controllers/surveyController');
 const ch = require('./controllers/GenerateController');
 const re = require('./controllers/TestController');
 
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, '../Front/build/index.html'));
-})
-app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, '../Front/build/index.html'))
-})
-
 app.use('/test', svc);
 app.use("/chat", ch);
 app.use("/result", re);
