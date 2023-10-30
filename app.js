@@ -11,8 +11,6 @@ app.use(cors({
 
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, '../Front/build')))
-
 const svc = require('./controllers/surveyController');
 const ch = require('./controllers/GenerateController');
 const re = require('./controllers/TestController');

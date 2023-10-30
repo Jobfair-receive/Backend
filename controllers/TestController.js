@@ -1,7 +1,3 @@
-const express = require("express");
-const asyncify = require("express-asyncify").default;
-const router = asyncify(express.Router());
-const axios = require("axios");
 require("dotenv").config();
 const { result1 } = require("../service/result1");
 const { result2 } = require("../service/result2");
